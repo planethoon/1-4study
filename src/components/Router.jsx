@@ -18,7 +18,7 @@ const Router = ({ children = [] }) => {
 
   const childrenArray = Array.isArray(children) ? children : [children];
 
-  const childrenToRender = (comp) => {
+  const checkChildrenToRender = (comp) => {
     if (!isValidElement(comp)) {
       return false;
     }
@@ -27,7 +27,7 @@ const Router = ({ children = [] }) => {
 
   return (
     <RouterContext.Provider value={contextData}>
-      {childrenArray.find(childrenToRender)}
+      {childrenArray.filter(checkChildrenToRender)}
     </RouterContext.Provider>
   );
 };

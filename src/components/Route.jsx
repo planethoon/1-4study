@@ -1,32 +1,12 @@
 import { useContext, useEffect, useState } from "react";
-import { RouterContext } from "../main";
+import { RouterContext } from "../context/RouterContext";
 
 function Route({ path, component }) {
-  const pathContext = useContext(RouterContext);
-  const [, setTrigger] = useState(true);
+  const { pathname } = useContext(RouterContext);
 
-  window.onpopstate = (e) => {
-    // setInnerPath(history.state.to);
-    console.log("온팝스테이트");
-    // setTrigger((v) => !v);
-    console.log(e);
-    // history.go(-1);
-  };
+  console.log("Route pathname", pathname);
 
-  useEffect(() => {
-    console.log(history);
-  });
-
-  // if (window.location.pathname === path) {
-  //   console.log(`${path} 렌더함 location.pathname: ${location.pathname}`);
-  //   return component;
-  // } else {
-  //   console.log(`${path} 렌더안함 location.pathname: ${location.pathname}`);
-
-  //   return <></>;
-  // }
-
-  return window.location.pathname === path ? component : <></>;
+  return pathname === path ? component : <></>;
 }
 
 export default Route;

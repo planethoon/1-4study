@@ -4,23 +4,7 @@ import Root from "./Root.jsx";
 import About from "./About.jsx";
 import "./index.css";
 import "./App.css";
-import { createContext } from "react";
-
-export const RouterContext = createContext({});
-
-export const Router = ({ children }) => {
-  const initialValue = {
-    path: location.pathname,
-    setPath: () => {
-      this.path = location.pathname;
-    },
-  };
-  return (
-    <RouterContext.Provider value={initialValue}>
-      {children}
-    </RouterContext.Provider>
-  );
-};
+import Router from "./components/Router.jsx";
 
 const container = document.getElementById("root");
 

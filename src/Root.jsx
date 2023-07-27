@@ -1,11 +1,9 @@
 import { useRouter } from "./hooks/useRouter";
 import { useContext, useEffect, useState } from "react";
-import { RouterContext } from "./main";
+import { RouterContext } from "./context/RouterContext";
 
 function Root() {
   const { push } = useRouter();
-  const [, trigger] = useState(true);
-  const pathContext = useContext(RouterContext);
 
   console.log(
     `루트 렌더함 history.state: ${history.state} location.pathname: ${location.pathname} `
@@ -17,7 +15,6 @@ function Root() {
       <div className="card">
         <button
           onClick={() => {
-            pathContext.setPath();
             push("/about");
           }}
         >

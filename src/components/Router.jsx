@@ -1,8 +1,12 @@
 import { RouterContext } from "../context/RouterContext";
-import { useEffect, useState } from "react";
+import { useEffect, useState, isValidElement } from "react";
 
-const Router = ({ children }) => {
+const Router = ({ children = [] }) => {
   const [pathState, setPathState] = useState(location.pathname);
+
+  const contextData = {
+    pathname: pathState,
+  };
 
   window.onpopstate = async (e) => {
     if (e.detail) {
@@ -10,21 +14,20 @@ const Router = ({ children }) => {
     } else {
       setPathState(location.pathname);
     }
-
-    console.log("popstate location.pathname", location.pathname);
   };
 
-  useEffect(() => {
-    console.log("pathState Changed to", pathState);
-  }, [pathState]);
+  const childrenArray = Array.isArray(children) ? children : [children];
 
-  const contextData = {
-    pathname: pathState,
+  const childrenToRender = (comp) => {
+    if (!isValidElement(comp)) {
+      return false;
+    }
+    return comp.props.path === location.pathname;
   };
 
   return (
     <RouterContext.Provider value={contextData}>
-      {children}
+      {childrenArray.find(childrenToRender)}
     </RouterContext.Provider>
   );
 };

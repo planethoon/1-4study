@@ -5,10 +5,6 @@ import { RouterContext } from "./context/RouterContext";
 function About() {
   const { push } = useRouter();
 
-  console.log(
-    `어바웃 렌더함 history.state: ${history.state} location.pathname: ${location.pathname} `
-  );
-
   return (
     <div className="root">
       <h1>about</h1>

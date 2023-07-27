@@ -1,12 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { RouterContext } from "../context/RouterContext";
 
 function Route({ path, component }) {
   const { pathname } = useContext(RouterContext);
 
-  console.log("Route pathname", pathname);
-
-  return pathname === path ? component : <></>;
+  return pathname === path ? component : null;
 }
 
 export default Route;
